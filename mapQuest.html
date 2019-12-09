@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<meta charset="utf-8"/>
+<html>
+  <head>
+    <script src="https://api.mqcdn.com/sdk/mapquest-js/v1.3.2/mapquest.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://api.mqcdn.com/sdk/mapquest-js/v1.3.2/mapquest.css"/>
+    >
+    <script type="text/javascript">
+      var string = "340 Eastwood Chapel Hill, NC 27514"
+      window.onload = function() {
+        L.mapquest.key = 'OPrIvojYLYrQph7GkvJM1Ai0iPAt2AQw';
+        
+        L.mapquest.geocoding().geocode(string, createMap);
+
+        function createMap(error, response) {
+          var location = response.results[0].locations[0];
+          var latLng = location.displayLatLng;
+          var map = L.mapquest.map('map', {
+            center: latLng,
+            layers: L.mapquest.tileLayer('map'),
+            zoom: 14
+          });
+        }
+      }
+    </script>
+  </head>
+
+  <body style="border: 0; margin: 0;">
+    <div id="map" style="width: 20%; height: 125px;"></div>
+  </body>
+</html>
